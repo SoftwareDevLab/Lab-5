@@ -1,82 +1,81 @@
 /*
- Anthony Melnik
- Oliver Pasquesi
- Ben Simmons
+ * Author: Oliver Pasquesi
+ * Author: Ben Simmons
+ * Author: Anthony Melnik
  */
 
 package com.gradescope.DoubleQueue.code;
 
 import java.util.ArrayList;
 
-/**ListDoubleQueueContract
+/**
+ * ListDoubleQueueContract
  *
  *
- * @invariant: maxListSize > 0
+ * @invariant:maxListSize > 0
  *
  * @corresponds: max_queue_size = maxListSize
  *
  */
-public class ListDoubleQueue implements IDoubleQueue
-{
-    private ArrayList<Double> LQueue;
+public class ListDoubleQueue implements IDoubleQueue {
+    private ArrayList<T> LQueue;
     private int maxListSize;
 
-    /**ListDoubleQueueConstructorContact
+    /**
+     * ListDoubleQueueConstructorContact
+     *
      *
      * @param maxSize represents the maximum size of the array.
      *
      * @pre maxSize > 0
      *
-     * @post maxListSize = maxSize AND self = new Double[maxListSize]
+     * @post maxListSize = maxSize AND self = new T[maxListSize]
      *
      */
-    public ListDoubleQueue(int maxSize)
-    {
-        this.LQueue = new ArrayList<Double>();
+    public ListDoubleQueue(int maxSize) {
+        this.LQueue = new ArrayList<T>();
         this.maxListSize = maxSize;
     }
 
-    /**enqueueContact
+    /**
+     * enqueueContract
      *
-     * @param val is the double number to be enqueued
+     *
+     * @param val is the generic value to be enqueued
      *
      * @pre |self| < maxListSize
      *
-     * @post [self = #self with val being added to the end of the list] AND maxListSize = #maxListSize
+     * @post [self = #self with val being added to the end of the list] AND
+     *       maxListSize = #maxListSize
      *
      */
     @Override
-    public void enqueue(Double val)
-    {
-        if(LQueue.size() == this.maxListSize)
-            LQueue.set(this.maxListSize-1, val);
+    public void enqueue(T val) {
+        if (LQueue.size() == this.maxListSize)
+            LQueue.set(this.maxListSize - 1, val);
         else
             LQueue.add(val);
     }
 
-    //Note: The below 3 functions intentionally do not have contracts. You do not need to add them.
+    // Note: The below 3 functions intentionally do not have contracts. You do not
+    // need to add them.
 
     @Override
-    public Double dequeue()
-    {
+    public T dequeue() {
         return LQueue.remove(0);
     }
 
-
     @Override
-    public int length()
-    {
+    public int length() {
         return LQueue.size();
     }
 
-
-    public String toString()
-    {
+    public String toString() {
         String ret = "";
-        for(Double d : LQueue)
-        {
+        for (T d : LQueue) {
             ret += ("[" + d + "] ");
         }
         return ret;
     }
+
 }
