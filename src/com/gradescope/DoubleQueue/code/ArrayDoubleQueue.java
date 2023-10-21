@@ -15,9 +15,9 @@ package com.gradescope.DoubleQueue.code;
 * @corresponds: max_queue_size = queueMaxSize
 *
 */
-public class ArrayDoubleQueue implements IDoubleQueue
+public class ArrayDoubleQueue<T> implements IDoubleQueue<T>
 {
-   private T[] queue;
+   private Object[] queue;
    private int queueMaxSize;
 
 
@@ -34,7 +34,7 @@ public class ArrayDoubleQueue implements IDoubleQueue
    public ArrayDoubleQueue(int maxSize)
    {
        this.queueMaxSize = maxSize;
-       this.queue = new T[queueMaxSize];
+       this.queue = new Object[queueMaxSize];
    }
 
 
@@ -71,14 +71,12 @@ public class ArrayDoubleQueue implements IDoubleQueue
    public T dequeue()
    {
        // 1. Assign the element to remove to its own variable.
-       Double removedElement = queue[0];
-
+       T removedElement = (T) queue[0];
 
        // 2. For the length of the queue, overwrite the current element with the next indexes element.
        for (int i = 0; i < length(); i++) {
            queue[i] = queue[i + 1];
        }
-
 
        // 3. Return the removed (overwritten) element's value.
        return removedElement;
@@ -91,10 +89,8 @@ public class ArrayDoubleQueue implements IDoubleQueue
        // 1. Initialize length (i) to 0;
        int i = 0;
 
-
        // 2. Loop and increment counter until a null element is hit.
        while (queue[i] != null) {i++;}
-
 
        // 3. Return the index, which is the length of the queue.
        return i;
@@ -105,7 +101,7 @@ public class ArrayDoubleQueue implements IDoubleQueue
    {
        // Same method from ListDoubleQueue
        String ret = "";
-       for(T d : queue)
+       for(Object d : queue)
        {
            ret += ("[" + d + "] ");
        }
@@ -118,8 +114,5 @@ public class ArrayDoubleQueue implements IDoubleQueue
         return this.queueMaxSize;
     }
 
-    public T[] getQueue()
-    {
-        return this.queue;
-    }
+    public T[] getQueue() { return (T[]) this.queue; }
 }
