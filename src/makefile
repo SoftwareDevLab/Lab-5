@@ -1,24 +1,18 @@
-# Variables
-JAVAC = javac
-JAVA = java
-CLASSPATH = ./
-
-# Default target
+# Compile all java files
 default: compile
 
-# Target to compile the program
 compile:
-	$(JAVAC) $(CLASSPATH)com/gradescope/DoubleQueue/code/*.java
-	$(JAVAC) $(CLASSPATH)Driver/*.java
+	javac com/gradescope/DoubleQueue/code/*.java
+	javac Driver/*.java
 
-# Target to run the program
+# Run the driver
 run:
-	$(JAVA) -cp $(CLASSPATH) Driver.DoubleQueueDriver
+	java -cp . Driver.DoubleQueueDriver
 
-# Target to clean the .class files
+# Remove all the .class files
 clean:
-	rm $(CLASSPATH)com/gradescope/DoubleQueue/code/*.class
-	rm $(CLASSPATH)Driver/*.class
+	rm com/gradescope/DoubleQueue/code/*.class
+	rm Driver/*.class
 
 
 
